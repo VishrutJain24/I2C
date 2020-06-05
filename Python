@@ -1,0 +1,22 @@
+//note - before working with I2C make sure to enable the I2C connection on Pi
+
+from smbus import SMBus  //from I2C
+
+address = 0x8
+bus = SMBus(1)
+
+numb = 1
+
+print("Enter 1 for ON or 0 for OFF")
+while numb == 1:
+    
+    ledstate = input(">>>>   ")
+    
+    if ledstate == "1":
+        bus.write_byte(address, 0x1)  
+        print("LED ON")
+    elif ledstate == "0":
+        bus.write_byte(address, 0x0)  
+        print("LED OFF")
+    else:
+        numb = 0
