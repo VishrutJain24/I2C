@@ -1,0 +1,24 @@
+#include <wire.h> //wire library
+
+int led = D7; //used led on the argon
+
+void setup() {
+    
+    pinMode(led1, OUTPUT);
+    wire.begin(0x8);
+    wire.Onreceive(receiveEvent);
+    digitalWrite(led, LOW);
+
+}
+
+void receiveEvent(int i) {
+    while (Wire.availabe()) {
+        char x = wire.Read();
+        digitalWrite(led, x);
+    }
+}
+
+void loop() {
+    delay(100);
+
+}
